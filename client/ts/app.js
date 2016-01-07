@@ -1,5 +1,5 @@
 "use strict";
-var penguinGame_1 = require('./penguinGame');
+var PenguinGame_1 = require('./PenguinGame');
 window.onload = () => {
-    var game = new penguinGame_1.PenguinGame();
+    var game = new PenguinGame_1.PenguinGame();
 };

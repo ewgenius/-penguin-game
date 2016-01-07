@@ -46,13 +46,82 @@
 
 	"use strict";
 
-	var penguinGame_1 = __webpack_require__(1);
+	var PenguinGame_1 = __webpack_require__(1);
 	window.onload = function () {
-	    var game = new penguinGame_1.PenguinGame();
+	    var game = new PenguinGame_1.PenguinGame();
 	};
 
 /***/ },
 /* 1 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var Player_1 = __webpack_require__(2);
+
+	var PenguinGame = function () {
+	    function PenguinGame() {
+	        _classCallCheck(this, PenguinGame);
+
+	        this.game = new Phaser.Game(800, 600, Phaser.AUTO, 'main', {
+	            preload: this.preload,
+	            create: this.create,
+	            update: this.update,
+	            render: this.render
+	        });
+	    }
+
+	    _createClass(PenguinGame, [{
+	        key: 'preload',
+	        value: function preload() {
+	            this.game.load.spritesheet('amputator', 'assets/amputator.png', 50, 50, 6);
+	            this.game.load.spritesheet('duck', 'assets/duck.png', 42, 120, 3);
+	        }
+	    }, {
+	        key: 'create',
+	        value: function create() {
+	            this.cursors = this.game.input.keyboard.createCursorKeys();
+	            this.jumpButton = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+	            this.game.physics.startSystem(Phaser.Physics.ARCADE);
+	            this.game.time.desiredFps = 30;
+	            this.game.physics.arcade.gravity.y = 450;
+	            this.player = new Player_1.Player();
+	            this.player.sprite = this.game.add.sprite(300, 200, 'amputator');
+	            this.game.physics.enable(this.player.sprite, Phaser.Physics.ARCADE);
+	            this.player.sprite.body.bounce.y = 0.2;
+	            this.player.sprite.body.collideWorldBounds = true;
+	            this.player.sprite.body.setSize(20, 32, 5, 16);
+	            this.player.sprite.animations.add('left', [3, 4, 5, 4], 10, true);
+	            this.player.sprite.animations.add('right', [0, 1, 2, 1], 10, true);
+	            this.player.sprite.animations.add('turn', [0, 1, 2, 1], 10, true);
+	            var duck = this.game.add.sprite(300, 200, 'duck');
+	            duck.animations.add('quack', [0, 1], 8, true);
+	            duck.animations.add('crouch', [0, 2], 8, true);
+	            duck.play('quack');
+	        }
+	    }, {
+	        key: 'update',
+	        value: function update() {
+	            this.player.update(this, this.cursors, this.jumpButton);
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            this.game.debug.text('' + this.game.time.suggestedFps, 32, 32);
+	        }
+	    }]);
+
+	    return PenguinGame;
+	}();
+
+	exports.PenguinGame = PenguinGame;
+
+/***/ },
+/* 2 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -90,9 +159,9 @@
 	                if (this.facing != 'idle') {
 	                    this.sprite.animations.stop();
 	                    if (this.facing == 'left') {
-	                        this.sprite.frame = 0;
+	                        this.sprite.frame = 3;
 	                    } else {
-	                        this.sprite.frame = 5;
+	                        this.sprite.frame = 0;
 	                    }
 	                    this.facing = 'idle';
 	                }
@@ -107,58 +176,7 @@
 	    return Player;
 	}();
 
-	var PenguinGame = function () {
-	    function PenguinGame() {
-	        _classCallCheck(this, PenguinGame);
-
-	        this.game = new Phaser.Game(800, 600, Phaser.AUTO, 'main', {
-	            preload: this.preload,
-	            create: this.create,
-	            update: this.update,
-	            render: this.render
-	        });
-	    }
-
-	    _createClass(PenguinGame, [{
-	        key: 'preload',
-	        value: function preload() {
-	            this.game.load.spritesheet('amputator', 'assets/amputator.png', 50, 50, 4);
-	        }
-	    }, {
-	        key: 'create',
-	        value: function create() {
-	            this.cursors = this.game.input.keyboard.createCursorKeys();
-	            this.jumpButton = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-	            this.game.physics.startSystem(Phaser.Physics.ARCADE);
-	            this.game.time.desiredFps = 30;
-	            this.game.physics.arcade.gravity.y = 450;
-	            this.player = new Player();
-	            this.player.sprite = this.game.add.sprite(300, 200, 'amputator');
-	            this.game.physics.enable(this.player.sprite, Phaser.Physics.ARCADE);
-	            this.player.sprite.body.bounce.y = 0.2;
-	            this.player.sprite.body.collideWorldBounds = true;
-	            this.player.sprite.body.setSize(20, 32, 5, 16);
-	            this.player.sprite.animations.add('left', [0, 1, 2, 1]);
-	            this.player.sprite.animations.add('right', [0, 1, 2, 1]);
-	            this.player.sprite.animations.add('turn', [0, 1, 2, 1]);
-	            this.player.sprite.animations.play('left', 8, true);
-	        }
-	    }, {
-	        key: 'update',
-	        value: function update() {
-	            this.player.update(this, this.cursors, this.jumpButton);
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            this.game.debug.text('' + this.game.time.suggestedFps, 32, 32);
-	        }
-	    }]);
-
-	    return PenguinGame;
-	}();
-
-	exports.PenguinGame = PenguinGame;
+	exports.Player = Player;
 
 /***/ }
 /******/ ]);
