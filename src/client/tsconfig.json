@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "isolatedModules": false,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "declaration": false,
+    "noImplicitAny": false,
+    "removeComments": true,
+    "noLib": false,
+    "preserveConstEnums": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "outDir": "../../server/ts"
+  },
+  "filesGlob": [
+    "**/*.ts",
+    "../../bower_components/phaser/typescript/**.d.ts"
+  ],
+  "compileOnSave": true,
+  "buildOnSave": false,
+  "files": [
+    "app.ts",
+    "../../bower_components/phaser/typescript/p2.d.ts",
+    "../../bower_components/phaser/typescript/phaser.comments.d.ts",
+    "../../bower_components/phaser/typescript/phaser.d.ts",
+    "../../bower_components/phaser/typescript/pixi.comments.d.ts",
+    "../../bower_components/phaser/typescript/pixi.d.ts"
+  ],
+  "atom": {
+    "rewriteTsconfig": true
+  }
+}

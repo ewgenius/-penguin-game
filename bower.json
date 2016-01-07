@@ -1,0 +1,21 @@
+{
+  "name": "penguin-game",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "ewgenius <ewgeniux@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/ewgenius/penguin-game",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "phaser": "~2.4.4"
+  }
+}
