@@ -6,7 +6,8 @@ export class Player {
   sprite: Phaser.Sprite;
   key: string;
   facing = 'left';
-  speed = 200;
+  speed = 300;
+  jumpSpeed = 500;
   jumpTimer = 0;
 
   constructor(game: Phaser.Game, key: string, animations?: Animation[]) {
@@ -56,7 +57,7 @@ export class Player {
     }
 
     if (input.buttonJump.isDown && this.sprite.body.onFloor() && game.time.now > this.jumpTimer) {
-      this.sprite.body.velocity.y = -this.speed;
+      this.sprite.body.velocity.y = -this.jumpSpeed;
       this.jumpTimer = game.time.now + 750;
     }
   }

@@ -2,7 +2,8 @@
 class Player {
     constructor(game, key, animations) {
         this.facing = 'left';
-        this.speed = 200;
+        this.speed = 300;
+        this.jumpSpeed = 500;
         this.jumpTimer = 0;
         this.key = key;
         this.sprite = game.add.sprite(0, 0, key);
@@ -38,7 +39,7 @@ class Player {
             }
         }
         if (input.buttonJump.isDown && this.sprite.body.onFloor() && game.time.now > this.jumpTimer) {
-            this.sprite.body.velocity.y = -this.speed;
+            this.sprite.body.velocity.y = -this.jumpSpeed;
             this.jumpTimer = game.time.now + 750;
         }
     }

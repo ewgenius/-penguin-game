@@ -90,7 +90,7 @@
 	            this.input.create(this.game, config_1.config.input);
 	            this.game.physics.startSystem(Phaser.Physics.ARCADE);
 	            this.game.time.desiredFps = 30;
-	            this.game.physics.arcade.gravity.y = 450;
+	            this.game.physics.arcade.gravity.y = 980;
 	            this.player = new Player_1.Player(this.game, 'amputator', [{
 	                name: 'left',
 	                frames: [3, 4, 5, 4],
@@ -163,7 +163,8 @@
 	        _classCallCheck(this, Player);
 
 	        this.facing = 'left';
-	        this.speed = 200;
+	        this.speed = 300;
+	        this.jumpSpeed = 500;
 	        this.jumpTimer = 0;
 	        this.key = key;
 	        this.sprite = game.add.sprite(0, 0, key);
@@ -200,7 +201,7 @@
 	                }
 	            }
 	            if (input.buttonJump.isDown && this.sprite.body.onFloor() && game.time.now > this.jumpTimer) {
-	                this.sprite.body.velocity.y = -this.speed;
+	                this.sprite.body.velocity.y = -this.jumpSpeed;
 	                this.jumpTimer = game.time.now + 750;
 	            }
 	        }

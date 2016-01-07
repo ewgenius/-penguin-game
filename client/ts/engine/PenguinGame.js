@@ -20,7 +20,7 @@ class PenguinGame {
         this.input.create(this.game, config_1.config.input);
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         this.game.time.desiredFps = 30;
-        this.game.physics.arcade.gravity.y = 450;
+        this.game.physics.arcade.gravity.y = 980;
         this.player = new Player_1.Player(this.game, 'amputator', [{
                 name: 'left',
                 frames: [3, 4, 5, 4],
