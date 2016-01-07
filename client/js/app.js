@@ -44,11 +44,33 @@
 /* 0 */
 /***/ function(module, exports) {
 
-	class PenguinGame extends Phaser.Game {
-	    constructor(width, height) {
-	        super(width, height);
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var PenguinGame = function () {
+	    function PenguinGame() {
+	        _classCallCheck(this, PenguinGame);
+
+	        this.game = new Phaser.Game(800, 600, Phaser.AUTO, 'content', { preload: this.preload, create: this.create });
 	    }
-	}
+
+	    _createClass(PenguinGame, [{
+	        key: 'preload',
+	        value: function preload() {}
+	    }, {
+	        key: 'create',
+	        value: function create() {}
+	    }]);
+
+	    return PenguinGame;
+	}();
+
+	window.onload = function () {
+	    var game = new PenguinGame();
+	};
 
 /***/ }
 /******/ ]);
