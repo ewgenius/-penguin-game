@@ -1,14 +1,4 @@
-class PenguinGame {
-  game: Phaser.Game;
-
-  constructor() {
-    this.game = new Phaser.Game(800, 600, Phaser.AUTO, 'content', { preload: this.preload, create: this.create });
-  }
-
-  preload() { }
-
-  create() { }
-}
+import { PenguinGame } from './penguinGame';
 
 window.onload = () => {
   var game = new PenguinGame();
