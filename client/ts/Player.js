@@ -1,9 +1,10 @@
 "use strict";
 class Player {
-    constructor() {
+    constructor(key) {
         this.facing = 'left';
         this.speed = 200;
         this.jumpTimer = 0;
+        this.key = key;
     }
     update(game, cursors, jumpButton) {
         this.sprite.body.velocity.x = 0;

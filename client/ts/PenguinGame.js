@@ -10,8 +10,8 @@ class PenguinGame {
         });
     }
     preload() {
-        this.game.load.spritesheet('amputator', 'assets/amputator.png', 50, 50, 6);
-        this.game.load.spritesheet('duck', 'assets/duck.png', 42, 120, 3);
+        this.game.load.spritesheet('amputator', 'assets/sprites/amputator.png', 50, 50, 6);
+        this.game.load.spritesheet('duck', 'assets/sprites/duck.png', 42, 120, 3);
     }
     create() {
         this.cursors = this.game.input.keyboard.createCursorKeys();

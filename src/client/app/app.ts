@@ -1,4 +1,4 @@
-import { PenguinGame } from './PenguinGame';
+import { PenguinGame } from './engine/PenguinGame';
 
 window.onload = () => {
   var game = new PenguinGame();
