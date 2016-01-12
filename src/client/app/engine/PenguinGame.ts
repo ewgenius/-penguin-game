@@ -19,28 +19,38 @@ export class PenguinGame {
   preload() {
     this.game.load.spritesheet('amputator', 'assets/sprites/amputator.png', 50, 50, 6);
     this.game.load.spritesheet('duck', 'assets/sprites/duck.png', 42, 120, 3);
+
+    this.game.load.tilemap('test1', 'assets/levels/test1.json', null, Phaser.Tilemap.TILED_JSON);
+    this.game.load.image('tiles', 'assets/sprites/tiles.png');
   }
 
   create() {
     this.input = new PenguinInput();
     this.input.create(this.game, config.input);
 
+
+    var map = this.game.add.tilemap('test1');
+    map.addTilesetImage('tiles', 'tiles');
+    var layer = map.createLayer('world');
+    layer.resizeWorld();
+
+    map.setCollisionBetween(1, 12);
+
+    this.game.physics.box2d.setBoundsToWorld(true, true, true, true, false);
+
+
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
     this.game.time.desiredFps = 30;
     this.game.physics.arcade.gravity.y = 980;
 
     this.player = new Player(this.game, 'amputator', [{
-      name: 'left',
-      frames: [3, 4, 5, 4],
-      framerate: 10,
-      loop: true
-    }, {
-      name: 'right',
+      name: 'walk',
       frames: [0, 1, 2, 1],
       framerate: 10,
       loop: true
     }]);
     this.game.physics.enable(this.player.sprite, Phaser.Physics.ARCADE);
+    this.game.camera.follow(this.player.sprite);
 
     this.player.sprite.body.bounce.y = 0.2;
     this.player.sprite.body.collideWorldBounds = true;
